@@ -1,0 +1,629 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Portfolio Design System - Dark Theme with Neon Accents and Glassmorphism */
+
+@layer base {
+  :root {
+    /* Dark Portfolio Theme */
+    --background: 240 10% 3.9%;
+    --background-secondary: 240 8% 6%;
+    --background-tertiary: 240 6% 8%;
+    --foreground: 0 0% 98%;
+
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+
+    /* Neon Primary Colors */
+    --primary: 184 100% 50%;
+    --primary-glow: 184 100% 70%;
+    --primary-foreground: 240 10% 3.9%;
+
+    /* Purple Accent */
+    --secondary: 280 100% 70%;
+    --secondary-glow: 280 100% 85%;
+    --secondary-foreground: 240 10% 3.9%;
+
+    /* Pink Accent */
+    --accent: 330 100% 70%;
+    --accent-glow: 330 100% 85%;
+    --accent-foreground: 240 10% 3.9%;
+
+    /* Glassmorphism */
+    --glass: 220 24% 5%;
+    --glass-border: 0 0% 100%;
+
+    --muted: 240 5% 15%;
+    --muted-foreground: 240 5% 65%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 5% 20%;
+    --input: 240 5% 15%;
+    --ring: 184 100% 50%;
+
+    --radius: 0.75rem;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)));
+    --gradient-secondary: linear-gradient(135deg, hsl(var(--secondary)), hsl(var(--accent)));
+    --gradient-background: linear-gradient(180deg, hsl(var(--background)), hsl(var(--background-secondary)));
+    --gradient-glow: radial-gradient(circle at center, hsl(var(--primary) / 0.3), transparent 70%);
+
+    /* Shadows & Glows */
+    --shadow-glow: 0 0 30px hsl(var(--primary) / 0.3);
+    --shadow-glow-secondary: 0 0 30px hsl(var(--secondary) / 0.3);
+    --shadow-glow-accent: 0 0 30px hsl(var(--accent) / 0.3);
+    --shadow-elegant: 0 25px 50px -12px hsl(var(--background) / 0.8);
+
+    /* Animation Variables */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html,
+  body {
+    background: #000;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply text-foreground overflow-x-hidden;
+    cursor: none;
+  }
+
+  @media (pointer: coarse) {
+    body {
+      cursor: auto;
+    }
+  }
+
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: var(--gradient-primary);
+    border-radius: 10px;
+  }
+}
+
+@layer components {
+  /* Glassmorphism Effect */
+  .glass {
+    background:
+      linear-gradient(145deg, hsl(220 24% 7% / 0.82), hsl(220 22% 4% / 0.9));
+    backdrop-filter: blur(18px);
+    border: 1px solid hsl(var(--glass-border) / 0.08);
+    box-shadow: 0 24px 70px -44px hsl(var(--primary) / 0.18), 0 20px 48px -34px rgb(0 0 0 / 0.9);
+  }
+
+  .premium-card-motion {
+    position: relative;
+    overflow: hidden;
+    transition:
+      transform 360ms cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 360ms ease,
+      box-shadow 360ms ease,
+      background 360ms ease;
+    will-change: transform;
+  }
+
+  .premium-card-motion::after {
+    content: '';
+    position: absolute;
+    inset: -35%;
+    pointer-events: none;
+    background: linear-gradient(
+      115deg,
+      transparent 34%,
+      hsl(var(--primary) / 0.11) 48%,
+      hsl(var(--secondary) / 0.08) 54%,
+      transparent 68%
+    );
+    opacity: 0;
+    transform: translateX(-34%) rotate(8deg);
+    transition:
+      opacity 280ms ease,
+      transform 720ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .premium-card-motion:hover {
+    transform: translateY(-4px);
+    border-color: hsl(var(--primary) / 0.22);
+    box-shadow:
+      0 28px 80px -52px hsl(var(--primary) / 0.32),
+      0 20px 54px -38px rgb(0 0 0 / 0.92);
+  }
+
+  .premium-card-motion:hover::after {
+    opacity: 1;
+    transform: translateX(34%) rotate(8deg);
+  }
+
+  /* Neon Glow Effects */
+  .glow-primary {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .glow-secondary {
+    box-shadow: var(--shadow-glow-secondary);
+  }
+
+  .glow-accent {
+    box-shadow: var(--shadow-glow-accent);
+  }
+
+  /* Text Gradients */
+  .text-gradient-primary {
+    background: var(--gradient-primary);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .text-gradient-secondary {
+    background: var(--gradient-secondary);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .interactive-heading {
+    position: relative;
+    display: inline-block;
+    isolation: isolate;
+    cursor: default;
+    overflow: hidden;
+    transform: translateY(0);
+    transition:
+      transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
+      filter 280ms ease,
+      opacity 280ms ease;
+    will-change: transform;
+  }
+
+  .interactive-heading::before {
+    content: '';
+    position: absolute;
+    inset: -18% -22%;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(
+      110deg,
+      transparent 28%,
+      rgba(255, 255, 255, 0.24) 45%,
+      rgba(255, 255, 255, 0.08) 52%,
+      transparent 68%
+    );
+    mix-blend-mode: screen;
+    opacity: 0;
+    transform: translateX(-64%) skewX(-12deg);
+    transition:
+      opacity 260ms ease,
+      transform 760ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .interactive-heading::after {
+    content: '';
+    position: absolute;
+    left: 8%;
+    right: 8%;
+    bottom: 0.02em;
+    height: 1px;
+    pointer-events: none;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      hsl(var(--primary) / 0.34),
+      hsl(var(--secondary) / 0.26),
+      transparent
+    );
+    opacity: 0;
+    transform: translateX(-16%) scaleX(0.42);
+    transform-origin: left;
+    transition:
+      opacity 280ms ease,
+      transform 360ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .interactive-heading:hover {
+    transform: translateY(-2px);
+    filter: saturate(1.08) contrast(1.02);
+  }
+
+  .interactive-heading:hover::before {
+    opacity: 1;
+    transform: translateX(64%) skewX(-12deg);
+  }
+
+  .interactive-heading:hover::after {
+    opacity: 0.88;
+    transform: translateX(0) scaleX(1);
+  }
+
+  .interactive-heading:active {
+    transform: translateY(-1px) scale(0.995);
+  }
+
+  /* Animated Background Patterns */
+  .animated-bg {
+    background: #000;
+    position: relative;
+  }
+
+  .animated-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: transparent;
+    opacity: 0;
+    animation: none;
+  }
+
+  .project-flip-card {
+    perspective: 1400px;
+  }
+
+  .project-flip-card__inner {
+    position: relative;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 720ms cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform;
+  }
+
+  .project-flip-card.is-flipped .project-flip-card__inner {
+    transform: rotateY(180deg);
+  }
+
+  .project-flip-card__face {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+
+  .project-flip-card__front {
+    transform: rotateY(0deg);
+  }
+
+  .project-flip-card__back {
+    transform: rotateY(180deg);
+  }
+
+  .project-flip-card:not(.is-flipped) .project-flip-card__front,
+  .project-flip-card.is-flipped .project-flip-card__back {
+    pointer-events: auto;
+  }
+
+  .project-flip-card .premium-card-motion {
+    will-change: auto;
+  }
+
+  .project-flip-card .premium-card-motion:hover {
+    transform: none;
+  }
+
+  .cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    background: var(--gradient-primary);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.1s ease;
+    mix-blend-mode: difference;
+  }
+
+  .cursor-outline {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    border: 2px solid hsl(var(--primary));
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transition: all 0.3s ease;
+  }
+
+  /* Mobile / touch optimizations */
+  @media (max-width: 768px), (pointer: coarse) {
+    /* Hide heavy 3D canvas on small/touch devices */
+    .scene-3d {
+      display: none !important;
+    }
+
+    /* Remove custom cursor decorations on touch devices */
+    .cursor-dot,
+    .cursor-outline {
+      display: none !important;
+    }
+
+    /* Reduce flip-card heights and allow stacking behavior on small screens */
+    .project-flip-card {
+      height: auto !important;
+      min-height: 0 !important;
+      overflow: visible !important;
+      transition: height 220ms cubic-bezier(.22,1,.36,1);
+    }
+
+    .project-flip-card__inner {
+      position: relative;
+      transform: none !important;
+      height: auto !important;
+    }
+
+    /* Make image containers responsive and avoid overflow */
+    .project-flip-card__front .relative.aspect-\[16\/9\] {
+      aspect-ratio: 16 / 9;
+      height: auto;
+    }
+
+    /* Improve tap target sizes for interactive buttons */
+    .project-flip-card .h-11.w-11,
+    .project-flip-card button.h-11.w-11 {
+      height: 48px !important;
+      width: 48px !important;
+    }
+
+    /* Allow flip behavior on touch devices so tap can reveal back face and popup */
+    .project-flip-card {
+      height: auto !important;
+      min-height: 0 !important;
+    }
+
+    .project-flip-card__inner {
+      position: relative;
+      height: auto !important;
+    }
+
+    /* Keep front interactive */
+    .project-flip-card__front {
+      position: relative !important;
+      pointer-events: auto !important;
+    }
+
+    /* Ensure back face remains available for taps (keeps 3D behavior)
+       Positioning kept absolute to preserve stacking and transitions */
+    .project-flip-card__back {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+    }
+
+    /* Explicitly enable 3D flip behavior on touch devices */
+    .project-flip-card__inner {
+      transform-style: preserve-3d;
+      -webkit-transform-style: preserve-3d;
+      transition: transform 720ms cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: transform;
+    }
+
+    /* When card is flipped, rotate the inner container to show the back */
+    .project-flip-card.is-flipped .project-flip-card__inner {
+      transform: rotateY(180deg) !important;
+      -webkit-transform: rotateY(180deg) !important;
+    }
+
+    /* Ensure the back face can receive pointer events when flipped */
+    .project-flip-card.is-flipped .project-flip-card__back {
+      pointer-events: auto !important;
+    }
+  }
+
+  /* Global mobile adjustments to prevent large headings from pushing content off-screen */
+  @media (max-width: 768px) {
+    .interactive-heading {
+      font-size: 1.9rem; /* ~30.4px */
+      line-height: 1.05;
+    }
+
+    section.relative {
+      padding-left: 1rem !important;
+      padding-right: 1rem !important;
+      padding-top: 3rem !important;
+      padding-bottom: 3rem !important;
+    }
+
+    /* Allow projects section to show flipped backs and popups on mobile */
+    .projects-section {
+      overflow: visible !important;
+    }
+
+    /* Prevent flipped project cards from obscuring the next section's heading */
+    .projects-section {
+      padding-bottom: 6rem !important;
+    }
+
+    .project-flip-card {
+      position: relative;
+      z-index: 10;
+    }
+
+    .project-flip-card.is-flipped {
+      z-index: 10;
+    }
+
+    .skills-section .interactive-heading {
+      position: relative;
+      z-index: 20;
+    }
+
+    .contact-section .interactive-heading {
+      position: relative;
+      z-index: 20;
+    }
+
+    /* Ensure the whole Skills section stacks above the Projects section */
+    .skills-section {
+      position: relative;
+      z-index: 40;
+    }
+
+    /* Ensure the whole Contact section stacks above the Projects section */
+    .contact-section {
+      position: relative;
+      z-index: 40;
+    }
+
+    .skills-section .interactive-heading {
+      z-index: 50;
+    }
+
+    /* On small screens, when a project card is flipped move the Skills section down */
+    @media (max-width: 640px) {
+      body.mobile-card-flipped .skills-section {
+        transform: translateY(var(--projects-flip-shift, 220px));
+        transition: transform 220ms cubic-bezier(.22,1,.36,1);
+      }
+
+      body.mobile-card-flipped .contact-section {
+        transform: translateY(var(--projects-flip-shift, 220px));
+        transition: transform 220ms cubic-bezier(.22,1,.36,1);
+      }
+
+      .skills-section {
+        transition: transform 220ms cubic-bezier(.22,1,.36,1);
+      }
+
+      /* Shrink contact cards on small screens for better spacing */
+      .contact-section .premium-card-motion {
+        max-width: 92vw;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+
+    /* Ensure main headings don't overflow or wrap awkwardly */
+    .interactive-heading {
+      white-space: normal;
+    }
+  }
+}
+
+@layer utilities {
+  /* Animation Keyframes */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    33% { transform: translateY(-10px) rotate(5deg); }
+    66% { transform: translateY(5px) rotate(-5deg); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.1; }
+    50% { opacity: 0.3; }
+  }
+
+  @keyframes glow {
+    0%, 100% { box-shadow: var(--shadow-glow); }
+    50% { box-shadow: 0 0 50px hsl(var(--primary) / 0.5); }
+  }
+
+  @keyframes slideInUp {
+    from {
+      opacity: 0;
+      transform: translateY(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeInScale {
+    from {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  /* Animation Classes */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-pulse-glow {
+    animation: pulse 3s ease-in-out infinite;
+  }
+
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite;
+  }
+
+  .animate-slide-up {
+    animation: slideInUp 0.8s ease-out;
+  }
+
+  .animate-fade-scale {
+    animation: fadeInScale 0.6s ease-out;
+  }
+
+  /* Hover Effects */
+  .hover-glow {
+    transition: var(--transition-smooth);
+  }
+
+  .hover-glow:hover {
+    box-shadow: var(--shadow-glow);
+    transform: translateY(-5px);
+  }
+
+  .hover-scale {
+    transition: var(--transition-bounce);
+  }
+
+  .hover-scale:hover {
+    transform: scale(1.05);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .premium-card-motion,
+    .premium-card-motion::after,
+    .project-flip-card__inner,
+    .interactive-heading,
+    .interactive-heading::after {
+      transition: none;
+      animation: none;
+    }
+
+    .premium-card-motion:hover,
+    .interactive-heading:hover,
+    .interactive-heading:active {
+      transform: none;
+    }
+  }
+}
