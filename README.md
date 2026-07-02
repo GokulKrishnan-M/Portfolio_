@@ -2,7 +2,7 @@
 
 ## Project info
 
-**Site URL**: https://gokul-krishnan-m.web.app/#home
+**My Site URL**: https://gokul-krishnan-m.web.app/#home
 
 ## How can I edit this code?
 
