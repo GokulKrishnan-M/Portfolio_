@@ -1,0 +1,17 @@
+{
+  "hosting": {
+    "site": "gokul-krishnan-m",
+    "public": "dist",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "rewrites": [
+      {
+        "source": "/googlee2329de3555cc24f.html",
+        "destination": "/googlee2329de3555cc24f.html"
+      },
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
