@@ -2,7 +2,7 @@
 
 ## Project info
 
-**URL**: https://lovable.dev/projects/1ceb657c-b26c-4828-802c-082aba8406ab
+**URL**: https://gokul-krishnan-m.web.app/#home
 
 ## How can I edit this code?
 
